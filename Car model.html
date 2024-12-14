@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Model Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .car-list {
+      margin-top: 30px;
+    }
+    .car-item {
+      background: #f1f1f1;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .car-item h3 {
+      margin: 0;
+      color: #333;
+    }
+    .car-item p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Car Model Entry</h1>
+    <form id="carForm">
+      <label for="name">Car Name:</label>
+      <input type="text" id="name" placeholder="Enter car name" required>
+
+      <label for="mechanical">Mechanical Features:</label>
+      <textarea id="mechanical" placeholder="Enter mechanical features" rows="3"></textarea>
+
+      <label for="electrical">Electrical Features:</label>
+      <textarea id="electrical" placeholder="Enter electrical features" rows="3"></textarea>
+
+      <button type="submit">Add Car</button>
+    </form>
+
+    <div class="car-list" id="carList">
+      <h2>Added Car Models:</h2>
+      <!-- Car items will appear here -->
+    </div>
+  </div>
+
+  <script>
+    // Get references to form elements
+    const carForm = document.getElementById('carForm');
+    const carList = document.getElementById('carList');
+
+    // Event listener for form submission
+    carForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form submission
+
+      // Get input values
+      const name = document.getElementById('name').value.trim();
+      const mechanical = document.getElementById('mechanical').value.trim();
+      const electrical = document.getElementById('electrical').value.trim();
+
+      // Validate input
+      if (!name || !mechanical || !electrical) {
+        alert('All fields are required!');
+        return;
+      }
+
+      // Create a new car item
+      const carItem = document.createElement('div');
+      carItem.className = 'car-item';
+
+      carItem.innerHTML = `
+        <h3>${name}</h3>
+        <p><strong>Mechanical Features:</strong> ${mechanical}</p>
+        <p><strong>Electrical Features:</strong> ${electrical}</p>
+      `;
+
+      // Add the car item to the car list
+      carList.appendChild(carItem);
+
+      // Clear the form
+      carForm.reset();
+    });
+  </script>
+</body>
+</html>
